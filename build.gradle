@@ -1,0 +1,26 @@
+plugins {
+    id 'war'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation group: 'javax', name: 'javaee-api', version: '8.0.1'
+
+    providedCompile group: 'javax', name: 'javaee-api', version: '8.0.1'
+
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.6'
+
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.4.2'
+
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.4.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+group = 'com.example.ee8'
+version = '1.0.0'
