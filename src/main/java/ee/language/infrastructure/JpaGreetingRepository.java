@@ -3,18 +3,19 @@ package ee.language.infrastructure;
 import java.util.List;
 import java.util.stream.Stream;
 
-import javax.enterprise.context.ApplicationScoped;
+
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import ee.language.domain.GreetingDescription;
 import ee.language.domain.GreetingsRepository;
 import ee.language.app.qualifiers.JPABased;
 
 @JPABased
-@ApplicationScoped
+@RequestScoped
 public class JpaGreetingRepository implements GreetingsRepository {
-    @PersistenceContext
+    @Inject
     private EntityManager defaultEntityManager;
 
     @Override
