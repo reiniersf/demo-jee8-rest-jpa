@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @NamedQuery(name = "all", query = "select gd from GreetingDescription gd")
 public class GreetingDescription {
 
-   	@Id
+    @Id
     @SequenceGenerator(name = "greeting_seqg", sequenceName = "lang_greetings_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "greeting_seqg")
     private long id;
@@ -22,6 +22,10 @@ public class GreetingDescription {
     @Column(name = "body")
     private String greeting;
     private String lang;
+
+    public GreetingDescription() {
+
+    }
 
     GreetingDescription(String description, String greeting, String lang) {
         this.description = description;
@@ -49,7 +53,7 @@ public class GreetingDescription {
         return this.id;
     }
 
-	public static GreetingDescription unknown(String greeting) {
-		return GreetingDescription.of("No description registered", greeting, "Any language");
-	}
+    public static GreetingDescription unknown(String greeting) {
+        return GreetingDescription.of("No description registered", greeting, "Any language");
+    }
 }
