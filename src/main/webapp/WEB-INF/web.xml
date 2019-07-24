@@ -11,7 +11,7 @@
     </session-config>    
     <data-source>
      <name>java:global/primary</name>
-     <class-name>org.postgresql.ds.PGConnectionPoolDataSource</class-name>
+     <class-name>org.postgresql.ds.PGSimpleDataSource</class-name>
      <server-name>localhost</server-name>
      <port-number>5432</port-number>
      <database-name>greetings</database-name>
