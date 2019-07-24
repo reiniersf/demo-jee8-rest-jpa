@@ -3,7 +3,6 @@ package ee.language.infrastructure;
 import java.util.List;
 import java.util.stream.Stream;
 
-
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -19,17 +18,14 @@ public class JpaGreetingRepository implements GreetingsRepository {
     private EntityManager defaultEntityManager;
 
     @Override
-	public List<GreetingDescription> listGreetings() {
-		return defaultEntityManager.createNamedQuery("all", GreetingDescription.class).getResultList();
-	}
+    public List<GreetingDescription> listGreetings() {
+        return defaultEntityManager.createNamedQuery("all", GreetingDescription.class).getResultList();
+    }
 
     @Override
     public Stream<GreetingDescription> retrieveDescription(String greeting) {
-        return defaultEntityManager.createQuery("select gd from GreetingDescription gd where gd.greeting like %:greet%", GreetingDescription.class)
-        .setParameter("greet", greeting)
-        .getResultStream();
+        return defaultEntityManager.createQuery("select gd from GreetingDescription gd where gd.greeting like :greet",
+                GreetingDescription.class).setParameter("greet", "%" + greeting + "%").getResultStream();
     }
-
-    
 
 }

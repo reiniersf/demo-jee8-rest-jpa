@@ -1,5 +1,6 @@
 package ee.language.infrastructure;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
@@ -21,4 +22,9 @@ public class InMemoryGreetingsService implements GreetingsService{
                 greetingsDescription.getOrDefault(greeting.toUpperCase(), "No description defined"), greeting,
                 greetingsLang.getOrDefault(greeting.toUpperCase(), "Unknown lang"));
     }
+
+    @Override
+    public List<GreetingDescription> retrieveGreetings() {
+        return List.of();
+	}
 }

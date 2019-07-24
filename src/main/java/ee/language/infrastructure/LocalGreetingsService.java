@@ -2,6 +2,8 @@ package ee.language.infrastructure;
 
 import static ee.language.domain.GreetingDescription.unknown;
 
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
@@ -22,5 +24,10 @@ public class LocalGreetingsService implements GreetingsService {
     public GreetingDescription describeGreetings(String greeting) {
         return greetingsRepository.retrieveDescription(greeting).findFirst().orElse(unknown(greeting));
     }
+
+    @Override
+    public List<GreetingDescription> retrieveGreetings() {
+		return greetingsRepository.listGreetings();
+	}
 
 }
