@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -21,19 +23,21 @@ public class GreetingDescription {
     private String description;
     @Column(name = "body")
     private String greeting;
-    private String lang;
+    @ManyToOne
+    @JoinColumn(name = "lang")
+    private Language lang;
 
     public GreetingDescription() {
 
     }
 
-    GreetingDescription(String description, String greeting, String lang) {
+    GreetingDescription(String description, String greeting, Language lang) {
         this.description = description;
         this.greeting = greeting;
         this.lang = lang;
     }
 
-    public static GreetingDescription of(String description, String greeting, String lang) {
+    public static GreetingDescription of(String description, String greeting, Language lang) {
         return new GreetingDescription(description, greeting, lang);
     }
 
@@ -45,7 +49,7 @@ public class GreetingDescription {
         return this.greeting;
     }
 
-    public String getLang() {
+    public Language getLang() {
         return this.lang;
     }
 
@@ -54,6 +58,6 @@ public class GreetingDescription {
     }
 
     public static GreetingDescription unknown(String greeting) {
-        return GreetingDescription.of("No description registered", greeting, "Any language");
+        return GreetingDescription.of("No description registered", greeting, Language.some());
     }
 }
